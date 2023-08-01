@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:DemoApp.WPF.ViewModels"
              xmlns:con="clr-namespace:DemoApp.WPF.Converters"
+             xmlns:ext="clr-namespace:DemoApp.WPF.Extensions"
              d:DataContext="{d:DesignInstance vm:WorkerEditDialogViewModel, IsDesignTimeCreatable=True}"
              xmlns:prism="http://prismlibrary.com/"
              Width="400" Height="300">
@@ -29,11 +30,11 @@
                     <Setter Property="Background" Value="White"/>
                 </Style>
             </UniformGrid.Resources>
-            <Button Content="Записать" IsDefault="True" FontWeight="Bold" Command="{Binding  CommitCommand}"/>
+            <Button Content="Записать"  FontWeight="Bold" Command="{Binding  CommitCommand}"/>
             <Button Content="Восстановить" Command="{Binding RejectCommand}"/>
             <Button Content="Отмена" IsCancel="True" Command="{Binding CancelCommand}"/>
         </UniformGrid>
-        <Grid Margin="5">
+        <Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=FirstTextBox}">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
@@ -66,21 +67,27 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Фамилия:"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SurName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SurName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     ext:FocusAdvancement.AdvancesByEnterKey="True"
+                     Name="FirstTextBox" />
 
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя:"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     ext:FocusAdvancement.AdvancesByEnterKey="True"/>
 
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Отчество:"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     ext:FocusAdvancement.AdvancesByEnterKey="True"/>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Дата рождения:"/>
             <DatePicker Grid.Column="1" Grid.Row="3"
                         SelectedDate="{Binding BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateConverter}}"
+                        ext:FocusAdvancement.AdvancesByEnterKey="True"
                         />
             <TextBlock Grid.Column="0" Grid.Row="4" Text="Пол:"/>
             <ComboBox Grid.Column="1" Grid.Row="4"
-                      SelectedValue="{Binding Pol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Tag">
+                      SelectedValue="{Binding Pol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Tag"
+                      ext:FocusAdvancement.AdvancesByEnterKey="True">
                 <ComboBoxItem Content="Ж" Tag="False"/>
                 <ComboBoxItem Content="М" Tag="True"/>
             </ComboBox>
