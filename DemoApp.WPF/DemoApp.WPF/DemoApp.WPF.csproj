@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>false</SelfContained>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<CoreCompileDependsOn>$(CoreCompileDependsOn);Protobuf_Compile</CoreCompileDependsOn>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+	<ItemGroup>
+		<Protobuf Include="..\..\DemoApp.DAL\protos\worker.proto" ProtoRoot="..\..\DemoApp.DAL\protos" GrpcServices="Both" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.23.4" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.55.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.56.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+		<PackageReference Include="Prism.Unity" Version="8.1.97" />
+		<PackageReference Include="ReactiveValidation.Wpf" Version="2.0.3" />
+		<PackageReference Include="SpreadsheetLight.Cross.Platform" Version="3.5.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\DemoApp.DAL\DemoApp.DAL.csproj" />
+		<ProjectReference Include="..\DemoApp.WPF.Core\DemoApp.WPF.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Views\ChildEditDialog.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="OUT\111.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="XLS\STAT001.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="OUT\" />
+		<Folder Include="XLS\" />
+	</ItemGroup>
+</Project>
