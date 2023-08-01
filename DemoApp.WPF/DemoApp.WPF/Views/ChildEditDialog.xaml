@@ -8,6 +8,7 @@
              xmlns:con="clr-namespace:DemoApp.WPF.Converters"
              xmlns:vm="clr-namespace:DemoApp.WPF.ViewModels"
              d:DataContext="{d:DesignInstance vm:ChildEditDialogViewModel, IsDesignTimeCreatable=True}"
+             xmlns:ext="clr-namespace:DemoApp.WPF.Extensions"
              xmlns:prism="http://prismlibrary.com/"
              Width="400" Height="200">
     <UserControl.Resources>
@@ -30,7 +31,7 @@
             <Button Content="Восстановить" Command="{Binding RejectCommand}"/>
             <Button Content="Отмена" IsCancel="True" Command="{Binding CancelCommand}"/>
         </UniformGrid>
-        <Grid Margin="5">
+        <Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=FirstTextBox}">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
@@ -61,10 +62,16 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Text="ФИО:"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     ext:FocusAdvancement.AdvancesByEnterKey="True"
+                     Name="FirstTextBox"/>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Дата рождения:"/>
-            <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateConverter}}" Margin="0,3"/>
+            <DatePicker Grid.Column="1" Grid.Row="3" 
+                        SelectedDate="{Binding BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateConverter}}" 
+                        Margin="0,3"
+                        ext:FocusAdvancement.AdvancesByEnterKey="True"
+                        />
 
 
         </Grid>
