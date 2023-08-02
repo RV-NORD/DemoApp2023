@@ -14,7 +14,7 @@ namespace DemoApp.WPF.Services.Interfaces
         Task<bool> DeleteWorkerAsync(Worker worker);
         Task<Child> EditChildAsync(Child child);
         Task<Worker> EditWorkerAsync(Worker worker);
-        Task<List<Stat001>> GetAllStatAsync();
+        Task<List<WorkerChildCountStatistic>> GetAllStatAsync();
 
         Task<List<Worker>> GetAllWorkersAsync();
         bool IsDBActive();

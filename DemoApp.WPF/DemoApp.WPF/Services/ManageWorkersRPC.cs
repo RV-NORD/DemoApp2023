@@ -99,9 +99,9 @@ namespace DemoApp.WPF.Services
             return workerList;
         }
 
-        public async Task<List<Stat001>> GetAllStatAsync()
+        public async Task<List<WorkerChildCountStatistic>> GetAllStatAsync()
         {
-            List<Stat001> statList = new();
+            List<WorkerChildCountStatistic> statList = new();
             using var channel = GrpcChannel.ForAddress(GRPC);
             var client = new WorkerCRUD.WorkerCRUDClient(channel);
             ListStatReply statReply = await client.ListStatAsync(new Google.Protobuf.WellKnownTypes.Empty());

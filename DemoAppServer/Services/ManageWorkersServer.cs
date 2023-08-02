@@ -81,13 +81,13 @@ namespace DemoAppServer.Services
         {
             return await _DB.Worker.Include(x => x.Childs).AsSplitQuery().ToListAsync().ConfigureAwait(false);
         }
-        public async Task<List<Stat001>> GetAllStatsAsync()
+        public async Task<List<WorkerChildCountStatistic>> GetAllStatsAsync()
         {
-            return await _DB.Worker.Select(w => new Stat001
+            return await _DB.Worker.Select(w => new WorkerChildCountStatistic
             {
-                FIO = w.Name,
-                DR = w.BirthDay,
-                ChildCnt = w.Childs.Count
+                FullName = w.Name,
+                BirthDay = w.BirthDay,
+                ChildCount = w.Childs.Count
             }
                 ).ToListAsync();
 

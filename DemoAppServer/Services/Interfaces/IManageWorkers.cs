@@ -15,7 +15,7 @@ namespace DemoAppServer.Services.Interfaces
 
         Task<Worker> EditWorkerAsync(Worker worker);
         Task<List<Worker>> GetAllWorkersAsync();
-        Task<List<Stat001>> GetAllStatsAsync();
+        Task<List<WorkerChildCountStatistic>> GetAllStatsAsync();
         Task<Worker> GetWorkerAsync(int id);
         Task<Child> GetChildAsync(int id);
         Task<bool> IsDBActiveAsync(CancellationToken ct);

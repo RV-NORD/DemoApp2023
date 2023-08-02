@@ -36,15 +36,11 @@
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="OUT\111.txt">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="XLS\STAT001.xlsx">
+		<None Update="XlsTemplates\ChildCountTemplate.xlsx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="OUT\" />
-		<Folder Include="XLS\" />
+		<Folder Include="Out\" />
 	</ItemGroup>
 </Project>

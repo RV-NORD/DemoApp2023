@@ -1,5 +1,4 @@
-﻿using DemoApp.WPF.Modules;
-using DemoApp.WPF.Services.Interfaces;
+﻿using DemoApp.WPF.Services.Interfaces;
 using DemoApp.WPF.Services;
 using DemoApp.WPF.ViewModels;
 using DemoApp.WPF.Views;
@@ -36,7 +35,7 @@ namespace DemoApp.WPF
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<MainModule>();
+            //moduleCatalog.AddModule<MainModule>();
         }
 
         public App()

@@ -28,58 +28,58 @@ service WorkerCRUD {
 }
  
 message CheckReply{
-  string mes=1;
+  string Mes=1;
 }
 
 message GetWorkerRequest{
-  int32 id = 1;
+  int32 Id = 1;
 }
  
 message DeleteWorkerRequest{
-  int32 id = 1;
+  int32 Id = 1;
 }
 
 message BoolReply{
-	bool result = 1;
+	bool Result = 1;
 } 
 
 message ListReply{
   repeated WorkerReply Workers = 1;
 }
 message ListStatReply{
-  repeated StatReply stats = 1;
+  repeated StatReply Stats = 1;
 }
  
 message WorkerReply{
-  int32 id = 1;
+  int32 Id = 1;
   string SurName = 2;
   string FirstName = 3;
   string LastName = 4;
   google.protobuf.Timestamp BirthDay = 5;
-  bool pol = 6;
+  bool Pol = 6;
   repeated ChildReply Childs = 7;
 }
 
 message ChildReply{
-  int32 id = 1;
+  int32 Id = 1;
   string FullName=2;
   google.protobuf.Timestamp BirthDay = 3;
-  int32 workerid = 4;
+  int32 WorkerId = 4;
 }
 
 message StatReply{
   string FullName = 1;
   google.protobuf.Timestamp BirthDay = 2;
-  int32 childcnt = 3;
+  int32 ChildCount = 3;
 }
 
 message ListChildReply{
   repeated ChildReply Childs = 1;
 }
 message GetChildRequest{
-  int32 id = 1;
+  int32 Id = 1;
 }
  
 message DeleteChildRequest{
-  int32 id = 1;
+  int32 Id = 1;
 }

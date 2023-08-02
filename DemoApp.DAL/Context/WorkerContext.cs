@@ -13,7 +13,7 @@ namespace DemoApp.DAL.Context
         public DbSet<Worker> Worker { get; set; }
 
         public DbSet<Child> Childs { get; set; }
-        public DbSet<Stat001> Stat001 { get; set; }
+        public DbSet<WorkerChildCountStatistic> Stat001 { get; set; }
 
         
         
