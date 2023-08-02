@@ -24,6 +24,7 @@ namespace DemoApp.WPF.Services
 
 
             string fs = Environment.CurrentDirectory + to + $"ChildCntStat_{DateTime.Now.ToString("yy-MM-dd-HH-mm-ss")}.xlsx";
+            System.IO.Directory.CreateDirectory(Environment.CurrentDirectory + to);
             sl.SaveAs(fs);
             Process.Start("explorer.exe", Environment.CurrentDirectory + to);
         }
