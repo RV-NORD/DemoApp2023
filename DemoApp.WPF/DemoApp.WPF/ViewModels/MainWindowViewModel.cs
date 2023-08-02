@@ -1,8 +1,10 @@
 ﻿using DemoApp.WPF.Core.Messages;
 using DemoApp.WPF.Services.Interfaces;
+using DemoApp.WPF.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace DemoApp.WPF.ViewModels
         private string _title = "Демонстрационное приложение PRISM MVVM";
         private readonly IManageWorkers _Service;
         private IEventAggregator _EA;
+        private IRegionManager _RegionManager;
         CancellationTokenSource cts = new CancellationTokenSource();
 
         public string Title
@@ -107,10 +110,15 @@ namespace DemoApp.WPF.ViewModels
 
 
 
-        public MainWindowViewModel(IManageWorkers service, IEventAggregator ea)
+        public MainWindowViewModel(IManageWorkers service, IEventAggregator ea, IRegionManager regionManager)
         {
             _Service = service;
             _EA = ea;
+            _RegionManager = regionManager;
+            _RegionManager.RegisterViewWithRegion("PopulateRegion", typeof(PopulateView))
+                .RegisterViewWithRegion("StatRegion", typeof(StatView))
+                .RegisterViewWithRegion("WorkerRegion", typeof(WorkerView))
+                ;
         }
 
         public MainWindowViewModel()

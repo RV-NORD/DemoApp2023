@@ -23,7 +23,7 @@ namespace DemoApp.WPF.Services
             sl.ImportDataTable(iStartRowIndex, iStartColumnIndex, rd, false);
 
 
-            string fs = Environment.CurrentDirectory + to + $"STAT001_{DateTime.Now.ToString("yy-MM-dd-HH-mm-ss")}.xlsx";
+            string fs = Environment.CurrentDirectory + to + $"ChildCntStat_{DateTime.Now.ToString("yy-MM-dd-HH-mm-ss")}.xlsx";
             sl.SaveAs(fs);
             Process.Start("explorer.exe", Environment.CurrentDirectory + to);
         }

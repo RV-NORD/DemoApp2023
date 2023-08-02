@@ -52,7 +52,7 @@ namespace DemoApp.WPF.Extensions
             childReply.Id = child.Id;
             childReply.FullName = child.FullName;
             childReply.BirthDay = Timestamp.FromDateTimeOffset(child.BirthDay.ToDateTime(timeZero));
-            childReply.Workerid = child.WorkerId;
+            childReply.WorkerId = child.WorkerId;
             return childReply;
         }
 
@@ -62,24 +62,24 @@ namespace DemoApp.WPF.Extensions
             child.Id = childReply.Id;
             child.FullName = childReply.FullName;
             child.BirthDay = DateOnly.FromDateTime(childReply.BirthDay.ToDateTime());
-            child.WorkerId = childReply.Workerid;
+            child.WorkerId = childReply.WorkerId;
             return child;
         }
-        internal static StatReply ToStatReply(this Stat001 stat)
+        internal static StatReply ToStatReply(this WorkerChildCountStatistic stat)
         {
             var statReply = new StatReply();
-            statReply.FullName = stat.FIO;
-            statReply.BirthDay = Timestamp.FromDateTimeOffset(stat.DR.ToDateTime(timeZero));
-            statReply.Childcnt = stat.ChildCnt;
+            statReply.FullName = stat.FullName;
+            statReply.BirthDay = Timestamp.FromDateTimeOffset(stat.BirthDay.ToDateTime(timeZero));
+            statReply.ChildCount = stat.ChildCount;
             return statReply;
         }
 
-        internal static Stat001 FromStatReply(this StatReply statReply)
+        internal static WorkerChildCountStatistic FromStatReply(this StatReply statReply)
         {
-            var stat = new Stat001();
-            stat.FIO = statReply.FullName;
-            stat.DR = DateOnly.FromDateTime(statReply.BirthDay.ToDateTime());
-            stat.ChildCnt = statReply.Childcnt;
+            var stat = new WorkerChildCountStatistic();
+            stat.FullName = statReply.FullName;
+            stat.BirthDay = DateOnly.FromDateTime(statReply.BirthDay.ToDateTime());
+            stat.ChildCount = statReply.ChildCount;
             return stat;
         }
     }

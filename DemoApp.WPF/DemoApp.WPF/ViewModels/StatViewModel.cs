@@ -6,17 +6,18 @@ using DemoApp.WPF.Services.Interfaces;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 
 namespace DemoApp.WPF.ViewModels
 {
-    internal class StatViewModel :BindableBase
+    internal class StatViewModel : BindableBase
     {
         private readonly IManageWorkers _Service;
         private readonly XlsReport _Report;
         private IEventAggregator _EA;
-        private ObservableCollection<Stat001> _StatList;
-        public ObservableCollection<Stat001> StatList
+        private ObservableCollection<WorkerChildCountStatistic> _StatList;
+        public ObservableCollection<WorkerChildCountStatistic> StatList
         {
             get { return _StatList; }
             set { SetProperty(ref _StatList, value); }
@@ -30,7 +31,7 @@ namespace DemoApp.WPF.ViewModels
         async void ExecuteLoadDataCommand()
         {
             var stats = await _Service.GetAllStatAsync();
-            StatList ??= new ObservableCollection<Stat001>();
+            StatList ??= new ObservableCollection<WorkerChildCountStatistic>();
             StatList.AddClear(stats);
         }
 
@@ -41,7 +42,7 @@ namespace DemoApp.WPF.ViewModels
 
         void ExecuteXlsCommand()
         {
-            _Report.XlsExportFromList(StatList, "/XLS/STAT001.xlsx", $"\\OUT\\");
+            _Report.XlsExportFromList(StatList, "/XlsTemplates/ChildCountTemplate.xlsx", $"\\Out\\");
         }
         public StatViewModel(IManageWorkers service, XlsReport report, IEventAggregator ea)
         {
@@ -70,7 +71,9 @@ namespace DemoApp.WPF.ViewModels
 
         public StatViewModel()
         {
-                ///
+            if (App.IsDesignTime)
+                _StatList = new ObservableCollection<WorkerChildCountStatistic> {
+                    new WorkerChildCountStatistic { FullName = "Работник", BirthDay = new DateOnly(1990, 10, 10), ChildCount = 10} };
         }
     }
 }
